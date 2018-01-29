@@ -1,0 +1,51 @@
+{
+  "name": "heroku-agronomobot",
+  "version": "1.0.0",
+  "description": "a chatbot for help country man",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node",
+    "build": "babel src -d dist --presets es2015,stage-2",
+    "serve": "nodemon dist/index.js"
+  },
+  "engines": {
+    "node": "7.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icaroramiires/agronomobot.git"
+  },
+  "keywords": [
+    "node",
+    "es2015",
+    "chatbot",
+    "country"
+  ],
+  "author": "icaroramiires",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/icaroramiires/agronomobot/issues"
+  },
+  "homepage": "https://github.com/icaroramiires/agronomobot#readme",
+  "devDependencies": {
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "babel-register": "^6.24.0",
+    "moment": "^2.20.1",
+    "node-emoji": "^1.8.1",
+    "node-telegram-bot-api": "^0.27.0",
+    "nodemon": "^1.11.0",
+    "watson-developer-cloud": "^3.0.5"
+  }
+}

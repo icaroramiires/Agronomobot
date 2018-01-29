@@ -1,0 +1,9 @@
+{
+  "name": "Linguagem de Programação 1", 
+  "schedule": "18:30", 
+  "day_offered": "Quarta-Feira", 
+  "prof": "Fulano", 
+  "ch": 80,
+  "location": "Lab. B12",
+  "pre_req": ["Introdução A programação"] 
+}
