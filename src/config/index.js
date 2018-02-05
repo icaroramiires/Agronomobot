@@ -12,6 +12,6 @@ export default {
       version: 'v1',
       version_date: '2017-05-26'
     },
-    workspace_id: '8934a2a3-db6e-4cd8-8156-f5a86a6478d6',
+    workspace_id: '8934a2a3-db6e-4cd8-8156-f5a86a6478d6'
   }
 }
