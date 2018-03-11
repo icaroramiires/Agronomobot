@@ -2,7 +2,9 @@
 
 export default class InputParser {
   isAskingForWelcome (response) {
-    return response.intents.length > 0 && response.intents[0].intent === 'Welcome'
+    return (
+      response.intents.length > 0 && response.intents[0].intent === 'Welcome'
+    )
   }
 
   isAskingForMenu (response) {

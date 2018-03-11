@@ -8,41 +8,51 @@ console.log(emoji.find('🌡'))
 export default class Command {
   constructor () {
     this.opts = {
-      'parse_mode': 'Markdown'
+      parse_mode: 'Markdown'
     }
   }
   sendMessageWelcome (message, text, bot) {
     bot.sendMessage(message.chat, text, {
-      'reply_markup': {
-        'resize_keyboard': true,
-        'keyboard': [[`${emoji.get('clipboard')} Menu`]]
+      reply_markup: {
+        resize_keyboard: true,
+        keyboard: [[`${emoji.get('clipboard')} Menu`]]
       }
     })
   }
 
   sendMessageMenu (message, text, bot) {
     bot.sendMessage(message.chat, text, {
-      'reply_markup': {
-        'resize_keyboard': true,
-        'keyboard': [[`${emoji.get('control_knobs')} Mostrar Info. Nós`], [`${emoji.get('level_slider')} Monstrar Info. Sensores`], [`${emoji.get('clipboard')} Help`]]
+      reply_markup: {
+        resize_keyboard: true,
+        keyboard: [
+          [`${emoji.get('control_knobs')} Mostrar Info. Nós`],
+          [`${emoji.get('level_slider')} Monstrar Info. Sensores`],
+          [`${emoji.get('clipboard')} Help`]
+        ]
       }
     })
   }
 
   sendInfoNodes (message, text, bot) {
-    api.getAllNodes().then((response) => {
-      response.data.registros.slice(Math.max(response.data.registros.length - 5, 1)).forEach((item) => {
-        bot.sendMessage(message.chat, this.makerMessageNodeInfo(item), this.opts)
-      })
+    api.getAllNodes().then(response => {
+      response.data.registros
+        .slice(Math.max(response.data.registros.length - 5, 1))
+        .forEach(item => {
+          bot.sendMessage(
+            message.chat,
+            this.makerMessageNodeInfo(item),
+            this.opts
+          )
+        })
     })
   }
   sendMessageHelp (message, text, bot) {
     let response = 'texto'
     bot.sendMessage(message.chat, text).then(() => {
       bot.sendMessage(message.chat, response, {
-        'reply_markup': {
-          'resize_keyboard': true,
-          'keyboard': [[`${emoji.get('clipboard')} Menu`]]
+        reply_markup: {
+          resize_keyboard: true,
+          keyboard: [[`${emoji.get('clipboard')} Menu`]]
         }
       })
     })

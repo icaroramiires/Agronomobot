@@ -1,6 +1,8 @@
 export default {
   telegram: {
-    token: process.env.TELEGRAM_TOKEN || '366349913:AAFVwB7Z6nTkHMNy1orCKmxVwtRTC0eKwvc',
+    token:
+      process.env.TELEGRAM_TOKEN ||
+      '366349913:AAFVwB7Z6nTkHMNy1orCKmxVwtRTC0eKwvc',
     externalUrl: process.env.CUSTOM_ENV_VARIABLE || 'agronomobot.herokuapp.com',
     port: process.env.PORT || 443,
     host: '0.0.0.0'
