@@ -86,6 +86,38 @@ export default class Bot {
               this.bot
             )
           }
+
+          if (inputParser.isAskingForMolhamentoFoliar(resp)) {
+            return handlers.command.sendInfoSensorsMolhamentoFoliar(
+              message,
+              resp.output.text[0],
+              this.bot
+            )
+          }
+
+          if (inputParser.isAskingForRadiacaoSolar(resp)) {
+            return handlers.command.sendInfoSensorsRadiacaoSolar(
+              message,
+              resp.output.text[0],
+              this.bot
+            )
+          }
+
+          if (inputParser.isAskingForUmidade(resp)) {
+            return handlers.command.sendInfoSensorsUmidade(
+              message,
+              resp.output.text[0],
+              this.bot
+            )
+          }
+
+          if (inputParser.isAskingForTemperatura(resp)) {
+            return handlers.command.sendInfoSensorsTemperatura(
+              message,
+              resp.output.text[0],
+              this.bot
+            )
+          }
         }
       }
     )
