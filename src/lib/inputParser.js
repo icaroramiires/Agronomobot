@@ -8,15 +8,23 @@ export default class InputParser {
   }
 
   isAskingForMenu (response) {
-    return response.intents.length > 0 && response.intents[0].intent === 'Menu'
+    return (
+      response.intents.length > 0 &&
+      response.intents[0].intent === 'ShowOptionsMenu'
+    )
   }
 
   isAskingForInfoNodes (response) {
-    return response.intents.length > 0 && response.intents[0].intent === 'Node'
+    return (
+      response.intents.length > 0 &&
+      response.intents[0].intent === 'ShowDataNodes'
+    )
   }
 
   isAskingForHelp (response) {
-    return response.intents.length > 0 && response.intents[0].intent === 'Help'
+    return (
+      response.intents.length > 0 && response.intents[0].intent === 'NeedHelp'
+    )
   }
 
   isAskingForMolhamentoFoliar (response) {
