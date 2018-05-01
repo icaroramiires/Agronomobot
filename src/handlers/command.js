@@ -4,7 +4,7 @@ import svg2png from 'svg2png'
 
 import Api from '../services/api'
 import {renderNode, renderSensor} from '../services/render'
-import { Buffer } from 'buffer'
+
 const api = new Api()
 
 export default class Command {
