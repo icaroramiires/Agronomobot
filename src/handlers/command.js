@@ -1,8 +1,10 @@
 import emoji from 'node-emoji'
 import moment from 'moment'
+import svg2png from 'svg2png'
 
 import Api from '../services/api'
-
+import {renderNode, renderSensor} from '../services/render'
+import { Buffer } from 'buffer'
 const api = new Api()
 
 export default class Command {
@@ -11,6 +13,7 @@ export default class Command {
       parse_mode: 'Markdown'
     }
   }
+
   sendMessageWelcome (message, text, bot) {
     bot.sendMessage(message.chat, text, {
       reply_markup: {
@@ -102,8 +105,9 @@ export default class Command {
         })
     })
   }
+
   sendMessageHelp (message, text, bot) {
-    let response = 'texto'
+    let response = 'Escreva o que você pretende saber sobre a RSSF \n ou utilize os botões abaixo para acessar diretamente a informação.'
     bot.sendMessage(message.chat, text).then(() => {
       bot.sendMessage(message.chat, response, {
         reply_markup: {
@@ -158,5 +162,27 @@ export default class Command {
       ${emoji.get('calendar')} - ${moment(item.data).format('DD/MM/YYYY HH:mm')}
       ${emoji.get('thermometer')} -  ${Math.round(item.temperatura)}º\n\n
     `
+  }
+
+  sendReportSensors (message, bot) {
+    let rendered = renderSensor()
+    svg2png(rendered, { width: 600, height: 600 })
+      .then(buffer => {
+        bot.sendPhoto(message.chat, buffer, { caption: 'Relatórios do sensor de Umidade' })
+      })
+      .catch(() => {
+        bot.sendMessage(message.chat, 'Error to render chart')
+      })
+  }
+
+  sendReportNodes (message, bot) {
+    let rendered = renderNode()
+    svg2png(rendered, { width: 600, height: 600 })
+      .then(buffer => {
+        bot.sendPhoto(message.chat, buffer, { caption: 'Relatórios do Nó 1' })
+      })
+      .catch(() => {
+        bot.sendMessage(message.chat, 'Error to render chart')
+      })
   }
 }

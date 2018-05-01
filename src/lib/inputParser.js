@@ -3,34 +3,35 @@
 export default class InputParser {
   isAskingForWelcome (response) {
     return (
-      response.intents.length > 0 && response.intents[0].intent === 'Welcome'
+      response.intents.length > 0 && response.intents[0].intent === 'BemVindo'
     )
   }
 
   isAskingForMenu (response) {
     return (
       response.intents.length > 0 &&
-      response.intents[0].intent === 'ShowOptionsMenu'
+      response.intents[0].intent === 'MostrarMenuDeOpcoes'
     )
   }
 
   isAskingForInfoNodes (response) {
     return (
       response.intents.length > 0 &&
-      response.intents[0].intent === 'ShowDataNodes'
+      response.intents[0].intent === 'SaberInformacoes' &&
+      response.entities[0].entity === 'Node'
     )
   }
 
   isAskingForHelp (response) {
     return (
-      response.intents.length > 0 && response.intents[0].intent === 'NeedHelp'
+      response.intents.length > 0 && response.intents[0].intent === 'Ajuda'
     )
   }
 
   isAskingForMolhamentoFoliar (response) {
     return (
       response.intents.length > 0 &&
-      response.intents[0].intent === 'ShowDataSensors' &&
+      response.intents[0].intent === 'SaberInformacoes' &&
       response.entities[0].entity === 'Sensor' &&
       response.entities[0].value === 'Molhamento Foliar'
     )
@@ -39,7 +40,7 @@ export default class InputParser {
   isAskingForRadiacaoSolar (response) {
     return (
       response.intents.length > 0 &&
-      response.intents[0].intent === 'ShowDataSensors' &&
+      response.intents[0].intent === 'SaberInformacoes' &&
       response.entities[0].entity === 'Sensor' &&
       response.entities[0].value === 'Radiação Solar'
     )
@@ -48,7 +49,7 @@ export default class InputParser {
   isAskingForUmidade (response) {
     return (
       response.intents.length > 0 &&
-      response.intents[0].intent === 'ShowDataSensors' &&
+      response.intents[0].intent === 'SaberInformacoes' &&
       response.entities[0].entity === 'Sensor' &&
       response.entities[0].value === 'Umidade'
     )
@@ -57,9 +58,35 @@ export default class InputParser {
   isAskingForTemperatura (response) {
     return (
       response.intents.length > 0 &&
-      response.intents[0].intent === 'ShowDataSensors' &&
+      response.intents[0].intent === 'SaberInformacoes' &&
       response.entities[0].entity === 'Sensor' &&
       response.entities[0].value === 'Temperatura'
+    )
+  }
+
+  isAskingForReports (response) {
+    return (
+      response.intents.length > 0 &&
+      response.intents[0].intent === 'SolicitarRelatorios' && 
+      response.entities.length === 0
+    )
+  }
+
+  isAskingForReportSensor (response) {
+    return (
+      response.intents.length > 0 &&
+      response.intents[0].intent === 'SolicitarRelatorios' &&
+      response.entities.length > 0 &&
+      response.entities[0].entity === 'Sensor'
+    )
+  }
+
+  isAskingForReportNode (response) {
+    return (
+      response.intents.length > 0 &&
+      response.intents[0].intent === 'SolicitarRelatorios' &&
+      response.entities.length > 0 &&
+      response.entities[0].entity === 'Node'
     )
   }
 }

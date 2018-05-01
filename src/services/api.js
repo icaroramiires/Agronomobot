@@ -20,5 +20,4 @@ export default class Api {
   getOtherSensors () {
     return axios.get(`${this.URL}/es1201`)
   }
-
 }

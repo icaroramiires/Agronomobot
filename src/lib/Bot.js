@@ -2,6 +2,10 @@
 
 import TelegramBot from 'node-telegram-bot-api'
 const watson = require('watson-developer-cloud')
+import path from 'path'
+import fs from 'fs'
+const url = require('url')
+import request  from 'request'
 
 import Message from './message'
 import config from '../config'
@@ -117,6 +121,19 @@ export default class Bot {
               resp.output.text[0],
               this.bot
             )
+          }
+
+          if (inputParser.isAskingForReports(resp)) {
+            const buffer = fs.readFileSync(path.join(__dirname, 'relatorio.pdf'))
+            this.bot.sendDocument(message.chat, buffer)
+          }
+    
+          if (inputParser.isAskingForReportSensor(resp)) {
+            return handlers.command.sendReportSensors(message, this.bot)
+          }
+
+          if (inputParser.isAskingForReportNode(resp)) {
+            return handlers.command.sendReportNodes(message, this.bot)
           }
         }
       }
